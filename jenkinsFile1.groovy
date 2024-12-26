@@ -2,13 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
-            steps {
-                echo 'Cloning the repository...'
-                git url: 'https://github.com/your-repo/your-project.git', branch: 'main'
-            }
-        }
-
         stage('Build') {
             steps {
                 echo 'Building the project...'
@@ -31,18 +24,6 @@ pipeline {
                 // Replace this with your deployment command
                 sh 'echo Deployment process goes here'
             }
-        }
-    }
-
-    post {
-        always {
-            echo 'Pipeline finished.'
-        }
-        success {
-            echo 'Pipeline succeeded!'
-        }
-        failure {
-            echo 'Pipeline failed!'
         }
     }
 }
