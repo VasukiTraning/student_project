@@ -1,36 +1,34 @@
 pipeline {
-    agent any
+    agent { label 'Slave' }
     stages {
-        stage("Checkout Code") {
+        stage('Checkout Code') {
             steps {
-               checkout([
+                checkout([
                     $class: 'GitSCM',
                     branches: [[name: '*/main']],
-                    gitTool: 'Default Git', // Name configured in Global Tool Configuration
                     userRemoteConfigs: [[
-                        url: 'https://github.com/VasukiTraning/student_project.git'
-                ]]
-            ])
-
+                        url: 'https://github.com/NirupSingh2377/sample-webapp.git',
+                     ]]
+                ])
             }
         }
-        stage("Build") {
+        stage('Build') {
             steps {
                 sh '''
                 mvn clean install
                 '''
             }
         }
-        stage("Test") {
+        stage('Test') {
             steps {
                 sh '''
-                mvn test // Corrected `mvn Test` to `mvn test` (case-sensitive)
+                mvn test
                 '''
             }
         }
-        stage("Deploy to Artifactory") {
+        stage('Deploy to Artifactory') {
             steps {
-                configFileProvider([configFile(fileId: '25a9454e-3e36-429e-b7df-8e3a103bb707', variable: 'MAVEN_SETTINGS')]) {
+                configFileProvider([configFile(fileId: 'cf03c01a-a8c1-48f0-b40b-5a9bd4ae3232', variable: 'MAVEN_SETTINGS')]) {
                     sh '''
                     mvn deploy -s $MAVEN_SETTINGS
                     '''
