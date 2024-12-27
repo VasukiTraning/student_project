@@ -7,8 +7,7 @@ pipeline {
                     $class: 'GitSCM',
                     branches: [[name: '*/main']], 
                     userRemoteConfigs: [[
-                        url: "https://github.com/your-repo/your-project.git",
-                        credentialsId:"worker_node_key"
+                        url: "https://github.com/your-repo/your-project.git"
                     ]]
                 ])
             }
