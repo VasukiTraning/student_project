@@ -3,13 +3,15 @@ pipeline {
     stages {
         stage("Checkout Code") {
             steps {
-                checkout([
+               checkout([
                     $class: 'GitSCM',
-                    branches: [[name: '*/main']], 
+                    branches: [[name: '*/main']],
+                    gitTool: 'Default Git', // Name configured in Global Tool Configuration
                     userRemoteConfigs: [[
-                        url: "https://github.com/VasukiTraning/student_project.git"
-                    ]]
-                ])
+                        url: 'https://github.com/VasukiTraning/student_project.git'
+                ]]
+            ])
+
             }
         }
         stage("Build") {
