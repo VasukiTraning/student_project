@@ -1,13 +1,13 @@
 pipeline {
-    agent { label 'slave' } // Specify the label for the agent (slave)
+    agent { label 'Slave' } 
     stages {
         stage("Checkout Code") {
             steps {
                 checkout([
                     $class: 'GitSCM',
-                    branches: [[name: '*/main']], // Fixed syntax for branches
+                    branches: [[name: '*/main']], 
                     userRemoteConfigs: [[
-                        url: "https://github.com/your-repo/your-project.git" // Replace with your repo
+                        url: "https://github.com/your-repo/your-project.git" 
                     ]]
                 ])
             }
