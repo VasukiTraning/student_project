@@ -1,34 +1,34 @@
-pipeline{
-    agent {label 'slave'}
-    stages{
-        stage("checkout code"){
-            steps{
+pipeline {
+    agent { label 'slave' } // Specify the label for the agent (slave)
+    stages {
+        stage("Checkout Code") {
+            steps {
                 checkout([
                     $class: 'GitSCM',
-                    branch:[(name:'*/main')],
-                    userRemoteConfig:[[
-                        url:"https://github.com/your-repo/your-project.git"
+                    branches: [[name: '*/main']], // Fixed syntax for branches
+                    userRemoteConfigs: [[
+                        url: "https://github.com/your-repo/your-project.git" // Replace with your repo
                     ]]
                 ])
             }
         }
-        stage("build"){
-            steps{
+        stage("Build") {
+            steps {
                 sh '''
                 mvn clean install
                 '''
             }
         }
-        stage("Test"){
-            steps{
+        stage("Test") {
+            steps {
                 sh '''
-                mvn Test
+                mvn test // Corrected `mvn Test` to `mvn test` (case-sensitive)
                 '''
             }
         }
-        stage("Depoly to Artifactory"){
-            steps{
-                configFileProvider([configFile(fileId:'25a9454e-3e36-429e-b7df-8e3a103bb707	',variable: 'MAVEN_SETTINGS')]){
+        stage("Deploy to Artifactory") {
+            steps {
+                configFileProvider([configFile(fileId: '25a9454e-3e36-429e-b7df-8e3a103bb707', variable: 'MAVEN_SETTINGS')]) {
                     sh '''
                     mvn deploy -s $MAVEN_SETTINGS
                     '''
