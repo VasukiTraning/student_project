@@ -8,7 +8,7 @@ pipeline {
                     branches: [[name: '*/main']], 
                     userRemoteConfigs: [[
                         url: "https://github.com/your-repo/your-project.git",
-                        credentialsId:""
+                        credentialsId:"worker_node_key"
                     ]]
                 ])
             }
