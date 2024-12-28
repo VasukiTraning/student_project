@@ -9,6 +9,12 @@
 
     <!-- Ensure packaging is set to war -->
     <packaging>war</packaging>
+         <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <junit.jupiter.version>5.9.3</junit.jupiter.version> <!-- JUnit version -->
+    </properties>
 
     <build>
         <plugins>
@@ -32,14 +38,25 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
+ <!-- Maven Surefire Plugin for running tests -->
+                   <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M8</version>
+                <configuration>
+                    <includes>
+                        <include>**/*Test.java</include>
+                    </includes>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
           <distributionManagement>
         <snapshotRepository>
             <id>snapshots</id>
-            <name>sample-webapp</name>
-            <url>http://54.221.99.80:8081/artifactory/libs-snapshot</url>
+            <name>sample-webapp1</name>
+            <url>http://16.170.157.185:8081/artifactory/libs-snapshot</url>
         </snapshotRepository>
     </distributionManagement>
 
