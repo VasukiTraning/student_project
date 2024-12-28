@@ -17,14 +17,14 @@ pipeline {
                 stage('Build') {
                     steps {
                         sh '''
-                        mvn clean install
+                        mvn clean install -X
                         '''
                     }
                 }
                 stage('Test') {
                     steps {
                         sh '''
-                        mvn test
+                        mvn test -X
                         '''
                     }
                 }
