@@ -1,5 +1,8 @@
 pipeline {
-    agent any
+    agent { label 'Slave' }
+    tools {
+        maven 'Maven3.8'
+    }
     stages {
         stage('Checkout Code') {
             steps {
