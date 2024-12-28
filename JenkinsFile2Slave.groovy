@@ -41,10 +41,10 @@ pipeline {
         }
         stage('Deploy to Tomcat') {
             agent { label 'Slave' } // Deploy from slave2
-            steps {
+           steps {
                 sh '''
-                cp target/StudentManagementApp-2.0-SNAPSHOT.war /usr/tomcat/tomcat10/webapps
-                sudo /usr/tomcat/tomcat10/bin/shutdown.sh || true
+                cp /home/ubuntu/workspace/pipelinejob1/target/StudentManagementApp-1.0-SNAPSHOT.war /usr/tomcat/tomcat10/webapps
+                sudo /usr/tomcat/tomcat10/bin/shutdown.sh
                 sudo /usr/tomcat/tomcat10/bin/startup.sh
                 '''
             }
