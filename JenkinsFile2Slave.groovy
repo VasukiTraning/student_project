@@ -30,7 +30,7 @@ pipeline {
             }
         }
         stage('Deploy to Artifactory') {
-            agent { label 'Slave' } // Deploy from slave2
+            agent { label 'Slave1' } // Deploy from slave2
             steps {
                 configFileProvider([configFile(fileId: '25a9454e-3e36-429e-b7df-8e3a103bb707', variable: 'MAVEN_SETTINGS')]) {
                     sh '''
@@ -40,7 +40,7 @@ pipeline {
             }
         }
         stage('Deploy to Tomcat') {
-            agent { label 'Slave' } // Deploy from slave2
+            agent { label 'Slave1' } // Deploy from slave2
            steps {
                 sh '''
                 cp /home/ubuntu/workspace/pipelinejob1/target/StudentManagementApp-1.0-SNAPSHOT.war /usr/tomcat/tomcat10/webapps
