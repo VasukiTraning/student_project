@@ -30,15 +30,15 @@ pipeline {
                 }
             }
         }
-        stage('Deploy to Artifactory') {
-            steps {
-                configFileProvider([configFile(fileId: '25a9454e-3e36-429e-b7df-8e3a103bb707', variable: 'MAVEN_SETTINGS')]) {
-                    sh '''
-                    mvn deploy -s $MAVEN_SETTINGS
-                    '''
-                }
-            }
-        }
+        // stage('Deploy to Artifactory') {
+        //     steps {
+        //         configFileProvider([configFile(fileId: '25a9454e-3e36-429e-b7df-8e3a103bb707', variable: 'MAVEN_SETTINGS')]) {
+        //             sh '''
+        //             mvn deploy -s $MAVEN_SETTINGS
+        //             '''
+        //         }
+        //     }
+        // }
         stage('Deploy to Tomcat') {
             steps {
                 sh '''
