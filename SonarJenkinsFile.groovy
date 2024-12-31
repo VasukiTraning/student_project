@@ -1,5 +1,9 @@
 pipeline {
     agent any
+	  tools {
+        jdk 'jdk-21' // Use the JDK configured in Jenkins
+        maven 'maven'
+    }
     stages {
         stage('Checkout Code') {
             steps {
