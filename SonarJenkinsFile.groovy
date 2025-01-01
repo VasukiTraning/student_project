@@ -36,10 +36,12 @@ pipeline {
 			   SONAR_AUTH_TOKEN =credentials('SonarQube')
             }
 			steps{
+				 dir('workspace/pipelinejob1'){
 			sh '''
 			mvn sonar:sonar -Dsonar.projectkey=sample_project -Dsonar.host.url=$SONAR_HOST_URL -Ds 
 			'''
 			}
+		}
         }
         stage('Deploy to Tomcat') {
             steps {
